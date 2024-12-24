@@ -19,7 +19,12 @@ public class SeamCarverDijkstra extends SeamCarver {
 	
 	@Override
 	public void reduceToSize(int width, int height) {
-		throw new UnsupportedOperationException();
+		while (picture.width() > width) {
+			cropVertical(verticalSeam());
+		}
+		while (picture.height() > height) {
+			cropHorizontal(horizontalSeam());
+		}
 	}
 		
 	@Override
