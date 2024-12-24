@@ -790,3 +790,5 @@ private void loadImage() {
 Vous pouvez ensuite lancer l'application et vous devriez remarquer une meilleure réactivité maintenant (essayer de réduire la taille de la fenêtre par exemple).
 
 </article>
+#   G r a p h s  
+ 
