@@ -24,11 +24,35 @@ public class Dijkstra<T> {
 	}
 
 	private void solve(Graph<T> graph, T source) {
-		throw new UnsupportedOperationException();
+		cost.put(source, 0.0);
+		pq.add(new DijkstraNode<>(0.0, source));
+		while (!pq.isEmpty()) {
+			T u = pq.poll().vertex;
+			for (VertexAndWeight<T> vw : graph.neighbors(u)) {
+				T v = vw.vertex;
+				double w = vw.weight;
+				double newCost = getCost(u) + w;
+				if (newCost < getCost(v)) {
+					cost.put(v, newCost);
+					prev.put(v, u);
+					pq.add(new DijkstraNode<>(newCost, v));
+				}
+
+
+			}
+		}
 	}
 
+
+
+
 	public Deque<T> getPathTo(T v) {
-		throw new UnsupportedOperationException();
+		Deque<T> path = new ArrayDeque<>();
+		while(v!=null) {
+			path.addFirst(v);
+			v = prev.get(v);
+		}
+		return path;
 	}
 
 	public double getCost(T v) {
@@ -38,5 +62,6 @@ public class Dijkstra<T> {
 	public boolean hasPathTo(T v) {
 		return getCost(v) != Double.POSITIVE_INFINITY;
 	}
+
 
 }

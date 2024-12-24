@@ -23,13 +23,17 @@ public class SeamCarverDijkstra extends SeamCarver {
 	}
 		
 	@Override
-	public Deque<Coordinate> horizontalSeam() {		
-		throw new UnsupportedOperationException();
+	public Deque<Coordinate> horizontalSeam() {
+		TopToBottomGridGraph g = new TopToBottomGridGraph(this.energyMap());
+		Dijkstra<Coordinate> dj = new Dijkstra<Coordinate>(g, Coordinate.BOTTOM);
+		return dj.getPathTo(Coordinate.TOP);
 	}
 	
 	@Override
 	public Deque<Coordinate> verticalSeam() {
-		throw new UnsupportedOperationException();
-	}
+		LeftToRightGridGraph g = new LeftToRightGridGraph(this.energyMap());
+		Dijkstra<Coordinate> dj = new Dijkstra<Coordinate>(g, Coordinate.LEFT);
+		return dj.getPathTo(Coordinate.RIGHT);
+ 	}
 	
 }
